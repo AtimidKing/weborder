@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+
+.form-list{
+    margin: 15px auto;
+    align-content: center;
+    max-width: 330px;
+}
+.lb{
+    align-content: center;
+    margin-left:134px;
+    font-size: 16px;
+}
+.form-list .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-list .btn{
+    margin: 15px auto;
+    align-content: center;
+    max-width: 330px;
+}

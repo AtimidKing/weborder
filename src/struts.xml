@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="book" namespace="/books" extends="intercept">
+
+	</package>
+
+	<package name="administrator" namespace="/administrator" extends="intercept">
+		<action name="login" class="com.king.action.administrator.LoginAction">
+			<result name="success" type="redirect">/administrator/index.action</result>
+			<result name="input" >/alogin.jsp</result>
+		</action>
+		<action name="register" class="com.king.action.administrator.RegisterAction">
+			<result name="input" >/administrator/register.jsp</result>
+			<result name="success">/alogin.jsp</result>
+		</action>
+		<action name="create" class="com.king.action.product.CreateAction">
+			<result name="success" type="redirect">/administrator/index.action</result>
+			<result name="input">/administrator/create.jsp</result>
+			<param name="path">C:\Users\king\Desktop\weborder\web\image\</param>
+		</action>
+		<action name="index" class="com.king.action.product.IndexAction">
+			<result name="success">/administrator/index.jsp</result>
+		</action>
+		<action name="delete" class="com.king.action.product.DeleteAction">
+			<result name="success" type="redirect">/administrator/index.action</result>
+			<result name="input" type="redirect">/administrator/index.action</result>
+		</action>
+		<action name="update" class="com.king.action.product.UpdateAction">
+			<result name="success" type="redirect">/administrator/index.action</result>
+			<result name="modify">/administrator/modify.jsp</result>
+		</action>
+	</package>
+	<package name="customer" namespace="/customer" extends="intercept">
+
+		<action name="login" class="com.king.action.customer.LoginAction">
+			<result name="success" type="redirect">/customer/classification.jsp</result>
+			<result name="input">/clogin.jsp</result>
+		</action>
+		<action name="exit" class="com.king.action.customer.ExitAction">
+			<result name="success">/clogin.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="update" class="com.king.action.customer.UpdateAction">
+			<result name="success" type="redirect">/customer/order.action</result>
+			<result name="modify">/customer/modify.jsp</result>
+			<result name="input">/customer/modify.jsp</result>
+		</action>
+		<action name="index" class="com.king.action.product.IndexAction">
+			<result name="success">/customer/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="detail" class="com.king.action.product.DetailAction">
+			<result name="success">/customer/detail.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="order" class="com.king.action.order.IndexAction">
+			<result name="success">/customer/oder.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="addOrder" class="com.king.action.order.CreateAction">
+			<result name="success" type="redirect">/customer/order.action</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="deleteOrder" class="com.king.action.order.DeleteAction">
+			<result name="success" type="redirect">/customer/order.action</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="register" class="com.king.action.customer.RegisterAction">
+			<result name="success" type="redirect">/clogin.jsp</result>
+			<result name="input">/customer/register.jsp</result>
+		</action>
+		<action name="pay" class="com.king.action.shopbasket.PayAction">
+			<result name="success">/customer/pay.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="shopBasket" class="com.king.action.shopbasket.IndexAction">
+			<result name="success">/customer/shopbasket.jsp</result>
+		</action>
+		<action name="addShopBasket" class="com.king.action.shopbasket.AddShopBasket">
+			<result name="success" type="redirect">/customer/shopBasket.action</result>
+			<result name="error" type="redirect">/</result>
+		</action>
+		<action name="deleteShopProduct" class="com.king.action.shopbasket.DeleteAction">
+			<result name="success" type="redirect">/customer/shopBasket.action</result>
+		</action>
+		<action name="clearShopBasket" class="com.king.action.shopbasket.ClearAction">
+			<result name="success" type="redirect">/customer/shopBasket.action</result>
+		</action>
+	</package>
+
+	<package name="borrowrecords" namespace="/record" extends="struts-default">
+	</package>
+	<package name="intercept" namespace="/intercept" extends="struts-default">
+		<interceptors>
+			<interceptor name="authorization"
+				class="com.king.intercptor.AuthorizationIntercepor" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="authorization">
+					<param name="ignoreAction">
+						validate_code,register,login
+					</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack" />
+		<global-results>
+			<result name="login" type="redirect">/clogin.jsp</result>
+		</global-results>
+	</package>
+</struts>
